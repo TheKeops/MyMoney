@@ -1,0 +1,14 @@
+{
+    "theme": "system",
+    "language": "tr",
+    "currency": "TRY",
+    "version": "1.0.0",
+    "auto_refresh": false,
+    "user": {
+        "name": "user4839",
+        "surname": "default"
+    },
+    "appdata": {
+        "first_run": true
+    }
+}
