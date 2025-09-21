@@ -51,11 +51,13 @@ def create_and_insert_default_settings():
                 
                 with open(settings_path, 'w', encoding='utf-8') as f:
                     json.dump(default_settings, f, ensure_ascii=False, indent=4)
+
             else:
                 with open(settings_path, 'r', encoding='utf-8') as f:
                     _flag = json.load(f)
 
                     if _flag["appdata"]["first_run"] == True:
+
                         default_settings = {
                             "theme": "system", 
                             "language": f"{lang}",

@@ -11,7 +11,6 @@ import json
 import platform
 import sys
 import random
-import time as time_module
 
 # Modules
 import modules.create_files as create_files_module
@@ -380,17 +379,7 @@ def app():
         root_doviz.mainloop()
         
     def gelir_gider_function():
-        root_gg = ctk.CTkToplevel()
-        root_gg.title("MyMoney - Gelir Gider Takibi")
-        root_gg.resizable(False, False)
-        root_gg.geometry("600x400")
-        root_gg.attributes("-topmost", True)
-
-        x = (root_gg.winfo_screenwidth() - 600) // 2
-        y = (root_gg.winfo_screenheight() - 500) // 2
-        root_gg.geometry(f"+{x}+{y}")
-
-        root_gg.mainloop()
+        pass
 
     def analiz_function():
         pass

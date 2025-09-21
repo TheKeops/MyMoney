@@ -1,7 +1,6 @@
 # modules/getdata.py
 
 import requests
-import pandas as pd
 from bs4 import BeautifulSoup
 
 def get_currency_data(currency="Help"):
