@@ -1,2 +1,2 @@
 # mymoney
-MyMoney App
+MyMoney uygulaması ile insanların para birimlerini kolayca cevirmesini amaçlıyoruz
