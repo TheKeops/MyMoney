@@ -2,7 +2,7 @@
 # MyMoney
 This application has features such as displaying real-time exchange rates, showing your profit and loss with income and expense records. Please report any errors and share your suggestions.
 
-* Yakup ya Türkçe yap ya da İngilizce yap. Birde açıkla uygulamayı.
+ ===> **Yakup ya Türkçe yap ya da İngilizce yap. Birde açıkla uygulamayı.**
 
 > [!NOTE]
 > Our app isn't finished yet. We're constantly improving it and adding new features.
