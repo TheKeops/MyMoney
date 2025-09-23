@@ -16,7 +16,8 @@ This application has features such as displaying real-time exchange rates, showi
 ![sitem](https://i.imgur.com/V6d2vKX.jpeg)
 
 When we open the application, we see four options: settings, analysis, income-expense and foreign exchange.
-
+>[!NOTE]
+>We are constantly improving the interface.
 # Settings
 From this section, we can change options such as application language, currency and theme.
 >[!NOTE]
@@ -26,3 +27,14 @@ From this section, we can change options such as application language, currency 
 >[!CAUTION]
 >This feature is not yet available
 
+# İncome-Expense
+Thanks to this feature, you can instantly see the profit or loss you have made from your investments.
+>[!CAUTION]
+>This feature is not yet available
+
+# Foreign
+![sitem](https://i.imgur.com/gvQs17S.jpeg)
+
+In this section, you can see the current exchange rates of many currencies and make your calculations easily thanks to the built-in calculator.
+>[!NOTE]
+>We are constantly adding new currencies and improving the application.
