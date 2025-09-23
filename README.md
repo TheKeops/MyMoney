@@ -19,6 +19,8 @@ When we open the application, we see four options: settings, analysis, income-ex
 >[!NOTE]
 >We are constantly improving the interface.
 # Settings
+![sitem](https://i.imgur.com/AmPEVsL.png)
+
 From this section, we can change options such as application language, currency and theme.
 >[!NOTE]
 >We are constantly improving this part.
@@ -33,7 +35,7 @@ Thanks to this feature, you can instantly see the profit or loss you have made f
 >This feature is not yet available
 
 # Foreign
-![sitem](https://i.imgur.com/gvQs17S.jpeg)
+![sitem](https://i.imgur.com/rF370ki.jpeg)
 
 In this section, you can see the current exchange rates of many currencies and make your calculations easily thanks to the built-in calculator.
 >[!NOTE]
