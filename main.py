@@ -18,7 +18,6 @@ import modules.getdata as getdata_module
 import modules.user_currency_date as save_data_modules
 
 def app():
-
 #-[LANGUAGE]------------------------------------------------------
     def LanguageSync(type="Main"):
         global lang_flag
@@ -379,7 +378,77 @@ def app():
         root_doviz.mainloop()
         
     def gelir_gider_function():
-        pass
+        def open_all_saves():
+            with open("app/settings.json")as f:
+                config = json.load(f)
+
+            root_oas = ctk.CTkToplevel()
+            root_oas.title("MyMoney - Tüm Para Kayıtları")
+            root_oas.resizable(False, False)
+            root_oas.attributes("-topmost", True)
+            root_gg.attributes("-topmost",False)
+            root_oas.geometry("400x500")
+
+            x = (root.winfo_screenwidth() - 400) // 2
+            y = (root.winfo_screenheight() - 500) // 2
+
+            root_oas.geometry(f"+{x}+{y}")
+
+            title_oas = ctk.CTkLabel(root_oas, text="Tüm Para Kayıtları", font=ctk.CTkFont(size=25, weight="bold"))
+            title_oas.pack(pady=10)
+
+            liste = tk.Listbox(root_oas, width=60, height=20)
+            liste.pack(pady=10)
+
+            if config["languages"] == "system":
+                liste.configure(fg="white",bg="black")
+            elif config["languages"] == "dark":
+                pass
+            elif config["languages"] == "light":
+                pass
+            else:
+                pass
+
+            root_oas.mainloop()
+
+        def save():
+            pass
+
+        root_gg = ctk.CTkToplevel()
+        root_gg.resizable(False, False)
+        root_gg.title("MyMoney - Gelir Gider Takibi")
+        root_gg.geometry("500x400")
+        root_gg.attributes("-topmost", True)
+
+        x = (root.winfo_screenwidth() - 500) // 2
+        y = (root.winfo_screenheight() - 400) // 2
+
+        root_gg.geometry(f"+{x}+{y}")
+        
+        title_gg = ctk.CTkLabel(root_gg, text="Gelir Gider Takibi", font=ctk.CTkFont(size=25, weight="bold"))
+        title_gg.pack(pady=10)
+
+        available_money = ctk.CTkEntry(root_gg, placeholder_text="Para değer giriniz...", width=170)
+        available_money.pack(pady=10)
+
+        available_money_currency = ctk.CTkComboBox(root_gg, values=("USD","TRY","EUR","GBP"))
+        available_money_currency.pack(pady=10)
+        available_money_currency.set("Para Türü.")
+
+        available_money_currency_to = ctk.CTkComboBox(root_gg, values=("USD","TRY","EUR","GBP"))
+        available_money_currency_to.pack(pady=10)
+        available_money_currency_to.set("Çevirilecek.")
+
+        save_names_entry = ctk.CTkEntry(root_gg, placeholder_text="Kayıt adını giriniz...", width=170)
+        save_names_entry.pack(pady=10)
+
+        saves_save = ctk.CTkButton(root_gg, text="Kaydet", font=("century gothic",13,"bold"), command=save)
+        saves_save.pack(pady=15)
+
+        all_saves = ctk.CTkButton(root_gg, text="Tüm Kayıtlar", font=("century gothic",13,"bold"), command=open_all_saves)
+        all_saves.pack(pady=10)
+
+        root_gg.mainloop()
 
     def analiz_function():
         pass

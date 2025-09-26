@@ -5,10 +5,10 @@
     "version": "1.0.0",
     "auto_refresh": false,
     "user": {
-        "name": "user7024",
-        "surname": "default"
+        "name": "Keops",
+        "surname": "Studios"
     },
     "appdata": {
-        "first_run": true
+        "first_run": false
     }
 }

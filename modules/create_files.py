@@ -4,6 +4,7 @@ import os
 import locale
 import json
 import random
+import pip
 
 def create_and_insert_default_settings():
     try:
@@ -75,4 +76,32 @@ def create_and_insert_default_settings():
                         
                         with open(settings_path, 'w', encoding='utf-8') as f:
                             json.dump(default_settings, f, ensure_ascii=False, indent=4)
-                            
+
+def control_lib(library_names=list, auto_installer=False, debug=False):
+    if auto_installer == False:
+        for lib in library_names:
+            try:
+                __import__(lib)
+                if debug == True:
+                    print(f"{lib} available!")
+                else:
+                    pass
+            except ImportError:
+                if debug == True:
+                    print(f"{lib} not defined!")
+                else:
+                    pass
+    else:
+        for lib in library_names:
+            try:
+                __import__(lib)
+                if debug == True:
+                    print(f"{lib} available!")
+                else:
+                    pass
+            except ImportError:
+                if debug == True:
+                    print(f"{lib} not defined!")
+                    pip.main(["install",f"{lib}"])
+                else:
+                    pass

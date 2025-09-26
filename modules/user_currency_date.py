@@ -9,3 +9,4 @@ def save_currency(file_name=f"save-{random.randint(100000, 999999)}", currency="
             pass
     except:
         pass
+    
