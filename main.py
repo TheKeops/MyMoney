@@ -400,15 +400,6 @@ def app():
             liste = tk.Listbox(root_oas, width=60, height=20)
             liste.pack(pady=10)
 
-            if config["languages"] == "system":
-                liste.configure(fg="white",bg="black")
-            elif config["languages"] == "dark":
-                pass
-            elif config["languages"] == "light":
-                pass
-            else:
-                pass
-
             root_oas.mainloop()
 
         def save():
@@ -663,4 +654,5 @@ if __name__ == "__main__":
     else:
         messagebox.showerror("Unsupported OS", "This application only supports Windows.")
         exit(1)
+
         
