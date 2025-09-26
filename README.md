@@ -30,6 +30,8 @@ From this section, we can change options such as application language, currency 
 >This feature is not yet available
 
 # İncome-Expense
+![sitem](https://i.imgur.com/h8mmFFQ.jpeg)
+
 Thanks to this feature, you can instantly see the profit or loss you have made from your investments.
 >[!CAUTION]
 >This feature is not yet available
