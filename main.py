@@ -1,5 +1,7 @@
 # main.py - MyMoney App 
 
+# NOTE : saves alanında kayıt açılırken kayıtların bilgisini data-info.json adında dosyada tutulacak kodları yazılacak.
+
 import datetime
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,7 +17,8 @@ import random
 # Modules
 import modules.create_files as create_files_module
 import modules.getdata as getdata_module
-import modules.user_currency_date as save_data_modules
+import modules.user_currency_date as save_currency_saves
+import modules.currency_updater_bot as currency_updater_bot
 
 def app():
 #-[LANGUAGE]------------------------------------------------------
@@ -100,6 +103,16 @@ def app():
                 root_calc.title("Hesap Makinesi")
             else:
                 root_calc.title("Calculator")
+        elif type == "Gelir Gider":
+            if language == "tr":
+                pass
+            else:
+                pass
+        elif type == "Tüm Kayıtlar":
+            if language == "tr":
+                pass
+            else:
+                pass
         else:
             pass
 #---------------------------------------------------------------------
@@ -379,6 +392,14 @@ def app():
         
     def gelir_gider_function():
         def open_all_saves():
+            def load_saves_List():
+                for i in os.listdir(os.path.abspath("app/saves")):
+                    liste.insert(tk.END, f"{i}")
+                    root_oas.update()
+
+            def open_save_data():
+                root_oas.destroy()
+
             with open("app/settings.json")as f:
                 config = json.load(f)
 
@@ -397,13 +418,38 @@ def app():
             title_oas = ctk.CTkLabel(root_oas, text="Tüm Para Kayıtları", font=ctk.CTkFont(size=25, weight="bold"))
             title_oas.pack(pady=10)
 
-            liste = tk.Listbox(root_oas, width=60, height=20)
+            liste = tk.Listbox(root_oas, width=35, height=14, border=0, justify="center", borderwidth=0,relief="flat",activestyle="none",  selectbackground="black",selectforeground="orange", font=("Century Gothic",14,"bold"))
             liste.pack(pady=10)
+
+            load_saves_List()
 
             root_oas.mainloop()
 
         def save():
-            pass
+            if available_money_currency.get().upper().strip() == "" or available_money_currency_to.get().upper().strip() == "" or save_names_entry.get().lower().strip() == "" or available_money.get().lower().strip() == "":
+                messagebox.showerror("Error","Do not leave entries blank!")
+                root_gg.attributes("-topmost", False)
+            else:
+                    try:
+                        money = float(available_money.get().strip())
+                    except:
+                        messagebox.showerror("Error","Please enter a numeric value.")
+                        root_gg.attributes("-topmost", False)
+                        return
+
+                    save_name = save_names_entry.get().lower().strip()
+                    currency_save = available_money_currency.get().upper().strip()
+                    currency_save_to = str(available_money_currency_to.get().upper().strip())
+
+                    save_currency_saves.save_currency_saves(file_name=str(save_name), currency=currency_save, currency_to=currency_save_to,available_money=float(money))
+
+                    root_gg.attributes("-topmost", False)
+                    messagebox.showinfo("Successful","Your registration has been saved successfully!")
+
+                    available_money.delete(0, tk.END)
+                    available_money_currency.set("Para Türü.")
+                    available_money_currency_to.set("Çevirilecek.")
+                    save_names_entry.detele(0, tk.END)
 
         root_gg = ctk.CTkToplevel()
         root_gg.resizable(False, False)
@@ -438,6 +484,8 @@ def app():
 
         all_saves = ctk.CTkButton(root_gg, text="Tüm Kayıtlar", font=("century gothic",13,"bold"), command=open_all_saves)
         all_saves.pack(pady=10)
+
+        LanguageSync("Gelir Gider")
 
         root_gg.mainloop()
 
@@ -516,6 +564,7 @@ def app():
                 configure["theme"] = theme
                 configure["language"] = language
                 configure["currency"] = currency
+
                 with open("app/settings.json", "w", encoding="utf-8") as f:
                     json.dump(configure, f, indent=4)
 
@@ -654,5 +703,4 @@ if __name__ == "__main__":
     else:
         messagebox.showerror("Unsupported OS", "This application only supports Windows.")
         exit(1)
-
         
