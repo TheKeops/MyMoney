@@ -5,6 +5,7 @@ import locale
 import json
 import random
 import pip
+import requests
 
 def create_and_insert_default_settings():
     try:
@@ -27,19 +28,27 @@ def create_and_insert_default_settings():
 
     try:
         open("app/settings.json", 'x', encoding="utf-8")
+        open("app/version.txt", 'x', encoding="utf-8")
     except:
         pass
     
     settings_path = os.path.join("app", "settings.json")
     
     if os.path.isfile(settings_path):
+        with open("app/version.txt", 'r', encoding='utf-8') as f:
+            version = f.read().strip()
+
         with open(settings_path, 'r', encoding='utf-8') as f:
             if f.read().strip() == "":
+                with open("app/version.txt", 'w', encoding='utf-8') as f:
+                    response = requests.get("https://raw.githubusercontent.com/TheKeops/MyMoney/main/app/version.txt")
+                    f.write(response.text.strip())
+
                 default_settings = {
                     "theme": "system", 
                     "language": f"{lang}",
                     "currency": f"{_currency}",
-                    "version": "1.0.0",
+                    "version": f"{version}",
                     "auto_refresh": False,
                     "user": {
                         'name': f'user{random.randint(1000, 9999)}',
@@ -63,7 +72,7 @@ def create_and_insert_default_settings():
                             "theme": "system", 
                             "language": f"{lang}",
                             "currency": f"{_currency}",
-                            "version": "1.0.0",
+                            "version": f"{version}",
                             "auto_refresh": False,
                             "user": {
                                 'name': f'user{random.randint(1000, 9999)}',
