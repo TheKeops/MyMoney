@@ -1,10 +1,5 @@
 # main.pyw - MyMoney App 
 
-"""
-Ekleneck Özellikler :
-- Analiz Alanı
-"""
-
 import datetime
 import numpy as np
 import matplotlib.pyplot as plt
@@ -19,12 +14,14 @@ import random
 import subprocess
 import webbrowser
 from time import sleep
+import shutil
 
 # Modules
 import modules.create_files as create_files_module
 import modules.getdata as getdata_module
 import modules.user_currency_date as save_currency_saves
 import modules.currency_updater_bot as currency_updater_bot
+import modules.version_control as version_control_module
 
 def app():
 #-[LANGUAGE]------------------------------------------------------
@@ -111,14 +108,56 @@ def app():
                 root_calc.title("Calculator")
         elif type == "Gelir Gider":
             if language == "tr":
-                pass
+                root_gg.title("MyMoney - Gelir Gider Takibi")
+                title_gg.configure(text="Gelir Gider Takibi")
+                available_money.configure(placeholder_text="Para değer giriniz...")
+                available_money_currency.set("Para Türü.")
+                available_money_currency_to.set("Çevirilecek.")
+                save_names_entry.configure(placeholder_text="Kayıt adını giriniz...")
+                saves_save.configure(text="Kaydet")
+                all_saves.configure(text="Tüm Kayıtlar")
+                currency_update.configure(text="Kurları Güncelle")
+                update_currency.configure(text="Kurları Güncelle")
             else:
-                pass
+                root_gg.title("MyMoney - Income Expense Tracking")
+                title_gg.configure(text="Income Expense Tracking")
+                available_money.configure(placeholder_text="Enter money value...")
+                available_money_currency.set("Currency.")
+                available_money_currency_to.set("To Convert.")
+                save_names_entry.configure(placeholder_text="Enter save name...")
+                saves_save.configure(text="Save")
+                all_saves.configure(text="All Saves")
+                currency_update.configure(text="Update Currency")
         elif type == "Tüm Kayıtlar":
             if language == "tr":
-                pass
+                root_oas.title("MyMoney - Tüm Para Kayıtları")
+                title_oas.configure(text="Tüm Para Kayıtları")
+                open_save.configure(text="Kayıdı Aç")
+                open_save.configure(text="Kayıdı Aç")
+                delete_button.configure(text="Kayıdı Sil")
+                reload_button.configure(text="Yenile")
+                note_label.configure(text="*Analiz için 'Ana Menü' alanından 'Analiz' sekmesine giriniz.")
             else:
-                pass
+                root_oas.title("MyMoney - All Money Records")
+                title_oas.configure(text="All Money Records")
+                open_save.configure(text="Open Save")
+                open_save.configure(text="Open Save")
+                delete_button.configure(text="Delete Save")
+                reload_button.configure(text="Reload")
+                note_label.configure(text="*For analysis, go to the 'Analysis' section from the 'Main Menu' area.")
+        elif type == "Kayıt Detayları":
+            if language == "tr":
+                root_osd.title(f"MyMoney - Kayıt Detayları [{selected_save_file}]")
+                title_osd.configure(text="Kayıt Detayları")
+                delete_button.configure(text="Kayıdı Sil")
+                reload_button.configure(text="Yenile")
+                note_label.configure(text="*Analiz için 'Ana Menü' alanından 'Analiz' sekmesine giriniz.")
+            else:
+                root_osd.title(f"MyMoney - Save Details [{selected_save_file}]")
+                title_osd.configure(text="Save Details")
+                delete_button.configure(text="Delete Save")
+                reload_button.configure(text="Reload")
+                note_label.configure(text="*For analysis, go to the 'Analysis' section from the 'Main Menu' area.")
         else:
             pass
 #---------------------------------------------------------------------
@@ -399,7 +438,9 @@ def app():
         root_doviz.mainloop()
         
     def gelir_gider_function():
+        global root_gg, title_gg, available_money, available_money_currency, available_money_currency_to, save_names_entry, saves_save, all_saves, currency_update, update_currency
         def open_all_saves():
+            global root_oas, liste, open_save, money_data_list, root_osd, delete_button, reload_button, note_label, title_oas, open_save
             def load_saves_List():
                 for i in os.listdir(os.path.abspath("app/saves")):
                     liste.insert(tk.END, f"{i}")
@@ -414,13 +455,78 @@ def app():
                     open_save.configure(state="disabled")
 
             def open_save_data():
-                root_oas.destroy()
+                global selected_save_file, money_data_list, root_osd, delete_button, reload_button, note_label, title_osd
+                def load_save_currency_data():
+                    money_data_list.delete(0, tk.END)
+
+                    save_path = os.path.abspath(f"app/saves/{selected_save_file}")
+                    txt_files = []
+
+                    for files in os.listdir(save_path):
+                        if files.endswith(".txt"):
+                            txt_files.append(files)
+
+                    with open(f"app/saves/{selected_save_file}/{txt_files[0]}","r",encoding="utf-8") as f:
+                        lines = f.readlines()
+
+                        for line in lines:
+                            money_data_list.insert(tk.END, line.strip())
+                            root_osd.update()
+                            money_data_list.yview(tk.END)
+                            sleep(0.05)
+
+                def delete_save():
+                    root_osd.attributes("-topmost", False)
+                    if messagebox.askyesno("Warning","Are you sure you want to delete this record? This action cannot be undone!"):
+                        shutil.rmtree(f"app/saves/{selected_save_file}")
+                        messagebox.showinfo("Successful","The record has been successfully deleted.")
+                        root_osd.destroy()
+                    else:
+                        pass
+
+                secili_index = liste.curselection()
+                selected_save_file = liste.get(secili_index[0])
+
+                with open(f"app/saves/{selected_save_file}/data-info.json","r" ,encoding="utf-8") as f:
+                    data = json.load(f)
 
                 root_osd = ctk.CTkToplevel(root_gg)
-                root_osd.title("MyMoney - Para Analiz")
+                root_osd.title(f"MyMoney - Kayıt Detayları [{selected_save_file}]")
                 root_osd.resizable(False, False)
+                root_osd.geometry("650x400")
+                root_oas.attributes("-topmost",False)
                 root_osd.attributes("-topmost", True)
-                root_osd.geometry("400x500")
+
+                x=(root.winfo_screenwidth() - 650) // 2
+                y=(root.winfo_screenheight() - 400) // 2
+                root_osd.geometry(f"+{x}+{y}")
+
+                title_osd = ctk.CTkLabel(root_osd, text="Kayıt Detayları", font=ctk.CTkFont(size=25, weight="bold"))
+                title_osd.pack(pady=10)
+
+                info_label = ctk.CTkLabel(root_osd, text=f"Kayıt Adı : {selected_save_file}\n\nPara Türü : {data['currency']}\n\nÇevrilecek Para Türü : {data['to']}\n\nMevcut Para : {data['first_money']} {data['currency']}\n\nKayıt Tarihi : {data['first_import_date']}", font=("century gothic",16,"bold"), justify="left")
+                info_label.pack()
+                info_label.place(x=20, y=70)
+
+                money_data_list = tk.Listbox(root_osd, width=29, height=13, border=0, justify="left", borderwidth=0,relief="flat",activestyle="none",  selectbackground="black",selectforeground="orange", font=("Century Gothic",12,"bold"))
+                money_data_list.pack()
+                money_data_list.place(x=360, y=50)
+
+                load_save_currency_data()
+
+                delete_button = ctk.CTkButton(root_osd, text="Kayıdı Sil", font=("century gothic",13,"bold"), command=delete_save, fg_color="#ff0000", hover_color="#7e0000")
+                delete_button.pack()
+                delete_button.place(x=100, y=280)
+
+                reload_button = ctk.CTkButton(root_osd, text="Yenile", font=("century gothic",13,"bold"), command=load_save_currency_data)
+                reload_button.pack()
+                reload_button.place(x=100, y=320)
+
+                note_label = ctk.CTkLabel(root_osd, text="*Analiz için 'Ana Menü' alanından 'Analiz' sekmesine giriniz.", font=("century gothic",13,"italic"))
+                note_label.pack()
+                note_label.place(x=20, y=370)
+
+                LanguageSync("Kayıt Detayları")
 
                 root_osd.mainloop()
 
@@ -452,6 +558,8 @@ def app():
 
             load_saves_List()
 
+            LanguageSync("Tüm Kayıtlar")
+
             root_oas.mainloop()
 
         def save():
@@ -471,6 +579,7 @@ def app():
                     currency_save_to = str(available_money_currency_to.get().upper().strip())
 
                     save_currency_saves.save_currency_saves(file_name=str(save_name), currency=currency_save, currency_to=currency_save_to,available_money=float(money))
+                    currency_updater_bot.start_currency_update()
 
                     root_gg.attributes("-topmost", False)
                     messagebox.showinfo("Successful","Your registration has been saved successfully!")
@@ -479,6 +588,10 @@ def app():
                     available_money_currency.set("Para Türü.")
                     available_money_currency_to.set("Çevirilecek.")
                     save_names_entry.delete(0, tk.END)
+
+        def update_currency():
+            currency_updater_bot.start_currency_update()
+            messagebox.showinfo("Successful","All currencies have been updated successfully!")
 
         root_gg = ctk.CTkToplevel()
         root_gg.resizable(False, False)
@@ -513,6 +626,9 @@ def app():
 
         all_saves = ctk.CTkButton(root_gg, text="Tüm Kayıtlar", font=("century gothic",13,"bold"), command=open_all_saves)
         all_saves.pack(pady=10)
+
+        currency_update = ctk.CTkButton(root_gg, text="Kurları Güncelle", font=("century gothic",13,"bold"), command=update_currency, fg_color="#ffb700", hover_color="#7e5b01")
+        currency_update.pack(pady=10)
 
         LanguageSync("Gelir Gider")
 
@@ -759,8 +875,14 @@ if __name__ == "__main__":
         if network_check_value == False:
             messagebox.showwarning("No Internet Connection", "No internet connection detected. Some features may not work properly.")
         else:
+            # _version_control_flag = version_control_module.check_for_updates()
+
+            # if _version_control_flag == False: 
+            #     messagebox.showinfo("Update Available", "A new version of the application is available. Please update to the latest version.")
+            # else:
+            #     currency_updater_bot.start_currency_update()
+            #     app()
             app()
     else:
         messagebox.showerror("Unsupported OS", "This application only supports Windows.")
         exit(1)
-        
