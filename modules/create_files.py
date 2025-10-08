@@ -120,7 +120,7 @@ def control_lib(library_names=list, auto_installer=False, debug=False):
                 else:
                     pass
 
-def create_paper(machine=False, analysis_type="Kar Analizi", report_name="DEFAULT_REPORT", analysis_results=None, machine_results=None, report_notes="Herhangi bir raport notu eklenmedi."):
+def create_paper(machine=False, analysis_type="Kar Analiz", report_name="DEFAULT_REPORT", analysis_results=None, machine_results=None, report_notes="Herhangi bir raport notu eklenmedi."):
     """
     Makina = Makina analizi sonuçlarını ekler.
     Analiz Türü = Kar Analizi, Son 5 Analiz, Son 2 Analiz
