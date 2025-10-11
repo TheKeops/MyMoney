@@ -13,7 +13,6 @@ This application has features such as displaying real-time exchange rates, showi
 > Please do not tamper with the app's files.
 
 # How to use?
-![sitem](https://i.imgur.com/V6d2vKX.jpeg)
 
 When we open the application, we see four options: settings, analysis, income-expense and foreign exchange.
 >[!NOTE]
@@ -22,20 +21,23 @@ When we open the application, we see four options: settings, analysis, income-ex
 ![sitem](https://i.imgur.com/AmPEVsL.png)
 
 From this section, we can change options such as application language, currency and theme.
->[!NOTE]
->We are constantly improving this part.
 
 # Analysis
+![sitem](https://i.imgur.com/PsTcVHt.jpeg)
 Thanks to this section, you can easily and instantly see the profit or loss you have made from your investments.
 
 
+
 # Money Recording
-![sitem](https://i.imgur.com/h8mmFFQ.jpeg)
+![sitem](https://i.imgur.com/2dMA2Mt.jpeg)
 
 Thanks to this section, you can easily save your investments and access them whenever you want.
 
+>[!NOTE]
+>We are constantly improving this part
+
 # Foreign Currency
-![sitem](https://i.imgur.com/rF370ki.jpeg)
+![sitem](https://i.imgur.com/CKa74bl.jpeg)
 
 In this section, you can see the current exchange rates of many currencies and make your calculations easily thanks to the built-in calculator.
 >[!NOTE]
