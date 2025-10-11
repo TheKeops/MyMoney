@@ -26,7 +26,8 @@ From this section, we can change options such as application language, currency 
 ![sitem](https://i.imgur.com/PsTcVHt.jpeg)
 Thanks to this section, you can easily and instantly see the profit or loss you have made from your investments.
 
-
+>[!NOTE]
+>We are constantly improving this part.
 
 # Money Recording
 ![sitem](https://i.imgur.com/2dMA2Mt.jpeg)
@@ -34,7 +35,7 @@ Thanks to this section, you can easily and instantly see the profit or loss you 
 Thanks to this section, you can easily save your investments and access them whenever you want.
 
 >[!NOTE]
->We are constantly improving this part
+>We are constantly improving this part.
 
 # Foreign Currency
 ![sitem](https://i.imgur.com/CKa74bl.jpeg)
