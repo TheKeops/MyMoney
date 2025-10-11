@@ -26,17 +26,15 @@ From this section, we can change options such as application language, currency 
 >We are constantly improving this part.
 
 # Analysis
->[!CAUTION]
->This feature is not yet available
+Thanks to this section, you can easily and instantly see the profit or loss you have made from your investments.
 
-# İncome-Expense
+
+# Money Recording
 ![sitem](https://i.imgur.com/h8mmFFQ.jpeg)
 
-Thanks to this feature, you can instantly see the profit or loss you have made from your investments.
->[!CAUTION]
->This feature is not yet available
+Thanks to this section, you can easily save your investments and access them whenever you want.
 
-# Foreign
+# Foreign Currency
 ![sitem](https://i.imgur.com/rF370ki.jpeg)
 
 In this section, you can see the current exchange rates of many currencies and make your calculations easily thanks to the built-in calculator.
