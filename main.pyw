@@ -19,15 +19,6 @@ from time import sleep
 import shutil
 from PIL import Image, ImageTk
 
-"""
-Notlar :
-Analiz sonuçlarında filtre kısmına eklencekler :
-- Kar Analiz
-- Son 5 Veri Analizi
-- Tarih Aralığı Analizi
-- Son 2 Veri Analiz
-"""
-
 # Modules
 import modules.create_files as create_files_module
 import modules.getdata as getdata_module
@@ -1246,3 +1237,4 @@ if __name__ == "__main__":
     else:
         messagebox.showerror("Unsupported OS", "This application only supports Windows.")
         exit(1)
+
