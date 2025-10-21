@@ -1,14 +1,15 @@
 {
     "theme": "system",
-    "language": "tr",
-    "currency": "TRY",
+    "language": "en",
+    "currency": "USD",
     "version": "1.0.0",
     "auto_refresh": false,
     "user": {
-        "name": "Keops",
-        "surname": "Studios"
+        "name": "Developer",
+        "surname": "Man"
     },
     "appdata": {
         "first_run": false
     }
+
 }
