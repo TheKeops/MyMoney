@@ -2,13 +2,16 @@
 
 import requests
 
+
 def check_for_updates():
     try:
         with open("app/version.txt", "r") as version_file:
             version = version_file.read().strip().lower()
 
         APP_VERSION = version
-        VERSION_URL = "https://raw.githubusercontent.com/TheKeops/MyMoney/main/app/version.txt"
+        VERSION_URL = (
+            "https://raw.githubusercontent.com/TheKeops/MyMoney/main/app/version.txt"
+        )
 
         response = requests.get(VERSION_URL)
 

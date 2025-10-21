@@ -1,0 +1,11 @@
+# pip install -r requirements.txt
+
+numpy
+scikit-learn
+matplotlib
+tkinter
+customtkinter
+pillow
+pandas
+requests
+beautifulsoup4
