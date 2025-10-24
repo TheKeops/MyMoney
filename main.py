@@ -1,4 +1,4 @@
-# main.pyw - Main Codes
+# main.py - Main Codes
 
 import datetime
 import numpy as np
@@ -1821,3 +1821,4 @@ if __name__ == "__main__":
             "Unsupported OS", "This application only supports Windows."
         )
         exit(1)
+
